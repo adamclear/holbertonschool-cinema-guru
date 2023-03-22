@@ -1,0 +1,33 @@
+/* Header */
+
+.Header {
+	align-items: center;
+	color: white;
+	display: flex;
+	flex-direction: row;
+	height: 60px;
+	justify-content: space-between;
+	width: 100%
+}
+
+.title {
+	margin-left: 20px;
+}
+
+.userInfo {
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	margin-right: 20px;
+}
+
+.avatarImg {
+	border: 3px solid red;
+	border-radius: 50%;
+	height: 40px;
+	margin-right: 10px;
+}
+
+.logoutSpan {
+	margin-left: 15px;
+}

@@ -1,0 +1,69 @@
+/* Authentication */
+
+.Authentication {
+	align-self: center;
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto 0 auto;
+	width: 50%
+}
+
+div [class*="SignInUpDiv"] {
+	display: flex;
+	flex-direction: row;
+	height: 50px;
+}
+
+.Authentication form .inactive_button {
+	opacity: 80%;
+}
+
+.Authentication form .active_button,
+.Authentication form .inactive_button {
+	width: 50%;
+}
+
+.Authentication form .active_button button,
+.Authentication form .inactive_button button{
+	font-size: 120%;
+}
+
+.LoginRegisterForm {
+	background-color: white;
+	height: 350px;
+	width: 100%
+}
+
+/* Login & Register */
+
+.LoginRegister {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	position: relative;
+}
+
+h3 {
+	margin-top: 50px;
+}
+
+.submitButton_button {
+	height: 40px;
+	position: absolute;
+	right: 50px;
+	bottom: 30px;
+	width: 120px;
+}
+
+.submitButton_button button {
+	align-items: center;
+	display: flex;
+	justify-content: space-evenly;
+	font-size: 115%;
+}
+
+div [class*="_inputDiv"] {
+	margin: 20px 0;
+	width: 80%;
+}
