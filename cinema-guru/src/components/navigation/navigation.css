@@ -31,3 +31,17 @@
 .logoutSpan {
 	margin-left: 15px;
 }
+
+/* SideBar */
+
+.Sidebar_small {
+	width: 50px;
+}
+
+.Sidebar,
+.Sidebar_small {
+	background-color: red;
+	position: absolute;
+	float: left;
+	margin-top: 60px;
+}

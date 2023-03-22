@@ -1,27 +1,28 @@
 import './dashboard.css';
+import Favorites from './Favorites';
 import Header from '../../components/navigation/Header';
+import HomePage from './HomePage';
 import PropTypes from 'prop-types';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SideBar from '../../components/navigation/SideBar';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import WatchLater from './WatchLater';
 
 export default function Dashboard({
 	userUsername,
 	setIsLoggedIn
 }) {
-	/* This section just here to get rid of warnings */
-	let sidebar = <SideBar />
-	console.log(sidebar)
-	let routes = <Routes />
-	console.log(routes)
-	let route = <Route />
-	console.log(route)
-	let navigate = <Navigate />
-	console.log(navigate)
-	/* End warning section ------------------------- */
 	return (
 		<BrowserRouter>
 			<Header userUsername={userUsername}
-			setIsLoggedIn={setIsLoggedIn} />
+				setIsLoggedIn={setIsLoggedIn} />
+			<SideBar />
+			<main>
+				<Routes>
+					<Route exact page='/' element={<HomePage />} />
+					<Route exact page='/favorites' element={<Favorites />} />
+					<Route exact page='/watchlater' element={<WatchLater />} />
+				</Routes>
+			</main>
 		</BrowserRouter>
 	);
 }
