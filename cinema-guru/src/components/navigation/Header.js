@@ -4,7 +4,8 @@ import './navigation.css';
 import PropTypes from 'prop-types';
 
 export default function Header({
-	userUsername, setIsLoggedIn
+	userUsername,
+	setIsLoggedIn
 }) {
 	function logout() {
     localStorage.removeItem('accessToken');

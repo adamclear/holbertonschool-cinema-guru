@@ -11,8 +11,8 @@ export default function Input({
 	icon,
 	inputAttributes
 }) {
-	function handleInput(e) {
-		setValue(e);
+	function handleInput(event) {
+		setValue(event.target.value);
 	}
 	return (
 		<div className={className + '_inputDiv'}>
@@ -23,7 +23,7 @@ export default function Input({
 			</div>
 			<input {...inputAttributes}
 				type={type}
-				onChange={(e) => {handleInput(e)}}>					
+				onChange={handleInput}>					
 			</input>
 		</div>
 	);

@@ -1,7 +1,7 @@
 import Activity from '../Activity';
 import axios from 'axios';
-import { FiClock, FiFolder, FiStar } from 'react-icons/fi';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClock, faFolder, faStar } from '@fortawesome/free-solid-svg-icons';
 import './navigation.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -19,10 +19,13 @@ export default function SideBar() {
 
 	useEffect(() => {
 		const accessToken = localStorage.getItem('accessToken');
-		axios.get(process.env.REACT_APP_API_ACT, {
-			headers: { authorization: `Bearer ${accessToken}` }
+		console.log(accessToken)
+		axios.get('http://localhost:8000/api/activity', {
+			headers: { Authorization: `Bearer ${accessToken}` }
 		})
-		.then((response) => setActivities(response.data))
+		.then((response) => {
+			setActivities(response.data)
+		});
 	});
 
 	/* Delete later */
@@ -39,29 +42,59 @@ export default function SideBar() {
 				setShowActivities(false);}}>
 				<div className='Pages'>
 					<div className={`Home${selected === 'home' ? '_active' : ''}`}
-						icon={FiFolder}
 						onClick={() => {
 							setPage('home');
 							navigate('/');}}>
-							Home
+						<div className='pageBlock'>
+							<div className='pageIcon'>
+								<FontAwesomeIcon icon={faFolder} />
+							</div>
+							{!small ? 
+								<div className='pageDesc'>
+									Home
+								</div> : ''}
+						</div>
 					</div>
 					<div className={`Favorites${selected === 'favorites' ? '_active' : ''}`}
 						onClick={() => {
 							setPage('favorites');
 							navigate('/favorites');}}>
-							Favorites
+						<div className='pageBlock'>
+							<div className='pageIcon'>
+								<FontAwesomeIcon icon={faStar} />
+							</div>
+							{!small ? 
+								<div className='pageDesc'>
+									Favorites
+								</div> : ''}
+						</div>
 					</div>
 					<div className={`WatchLater${selected === 'watchLater' ? '_active' : ''}`}
 						onClick={() => {
 							setPage('watchLater');
 							navigate('/watchlater');}}>
-							Watch Later
+							<div className='pageBlock'>
+								<div className='pageIcon'>
+									<FontAwesomeIcon icon={faClock} />
+								</div>
+								{!small ? 
+									<div className='pageDesc'>
+										Watch Later
+									</div> : ''}
+						</div>
 					</div>
 				</div>
-				<h3>Latest Activities</h3>
-				<ul className='ActivitiesList'>
-					{activities}
-				</ul>
+				{!small ?
+					<div className='activitiesBlock'>
+						<p className='latestHeader'>
+						Latest Activities
+						</p>
+						<div className='activityList'>
+							<ul className='activityItems'>
+								{activities}
+							</ul>
+						</div>
+					</div> : ''}
 		</div>
 	)
 }

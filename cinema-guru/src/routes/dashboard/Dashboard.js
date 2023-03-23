@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SideBar from '../../components/navigation/SideBar';
 import WatchLater from './WatchLater';
+import ls from 'local-storage';
 
 export default function Dashboard({
 	userUsername,
@@ -13,16 +14,19 @@ export default function Dashboard({
 }) {
 	return (
 		<BrowserRouter>
-			<Header userUsername={userUsername}
-				setIsLoggedIn={setIsLoggedIn} />
-			<SideBar />
-			<main>
-				<Routes>
-					<Route exact page='/' element={<HomePage />} />
-					<Route exact page='/favorites' element={<Favorites />} />
-					<Route exact page='/watchlater' element={<WatchLater />} />
-				</Routes>
-			</main>
+			<div className='fullPage'>
+				<Header userUsername={userUsername}
+					setIsLoggedIn={setIsLoggedIn} />
+				<div className='mainContent'>
+					<SideBar />
+					<Routes>
+						<Route exact path='/' element={<HomePage />} />
+						<Route exact path='/favorites' element={<Favorites />} />
+						<Route exact path='/watchlater' element={<WatchLater />} />
+						<Route exact path='/*' element={<HomePage />} />
+					</Routes>
+				</div>
+			</div>
 		</BrowserRouter>
 	);
 }

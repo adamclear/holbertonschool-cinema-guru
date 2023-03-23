@@ -5,6 +5,7 @@ import Login from './Login';
 import PropTypes from 'prop-types';
 import Register from './Register';
 import { useState } from 'react';
+import ls from 'local-storage';
 
 export default function Authentication({
 	setIsLoggedIn,
@@ -18,17 +19,32 @@ export default function Authentication({
 		set_switch(value);
 	}
 
+	console.log(_switch)
+
+	axios.post('http://localhost:8000/api/auth/register', {
+		username,
+		password
+	}).then((response) => {
+		ls.set('accessToken', response.data.accessToken)
+	})
+
+	axios.post('http://localhost:8000/api/auth/login', {
+		username,
+		password
+	}).then((response) => {
+		ls.set('accessToken', response.data.accessToken)
+	})
+
 	function handleSubmit(e) {
 		e.preventDefault();
-		console.log("submitted!");
 		if (_switch) {
-			axios.post("http://localhost:8000/api/auth/login/", {
+			axios.post("http://localhost:8000/api/auth/login", {
 				username,
 				password
 			})
-			.then(response => {
+			.then((response) => {
 				if (response.data.accessToken) {
-					localStorage.setItem("accessToken", response.data.accessToken);
+					ls.set("accessToken", response.data.accessToken);
 					setIsLoggedIn(true);
 					setUserUsername(username);
 				}
@@ -37,13 +53,13 @@ export default function Authentication({
 				console.error(error);
 			});
 		} else {
-			axios.post("http://localhost:8000/api/auth/register/", {
+			axios.post("http://localhost:8000/api/auth/register", {
 				username,
 				password
 			})
-			.then(response => {
+			.then((response) => {
 				if (response.data.accessToken) {
-					localStorage.setItem("accessToken", response.data.accessToken);
+					ls.set("accessToken", response.data.accessToken);
 					setIsLoggedIn(true);
 					setUserUsername(username);
 				}
